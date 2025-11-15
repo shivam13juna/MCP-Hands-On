@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+INSTRUCTOR_CHECKLIST.md
+**/*.env
+prd.md
+tasks.md
+archive
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+
+
+# Optional: screenshots (uncomment if you don't want to track them)
+# data/tickets/screenshots/*

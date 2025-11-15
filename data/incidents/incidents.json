@@ -1,0 +1,30 @@
+[
+  {
+    "incident_id": "INC-1001",
+    "title": "Export to CSV timeouts for large workspaces",
+    "status": "Mitigating",
+    "summary": "Some customers with very large workspaces are experiencing timeouts when exporting dashboards to CSV. The export_service is partially degraded while we roll out a fix.",
+    "tags": ["export", "csv", "workspace", "timeout", "export_service"]
+  },
+  {
+    "incident_id": "INC-1002",
+    "title": "Authentication failures for SSO users in EU region",
+    "status": "Investigating",
+    "summary": "SSO users in the EU region are intermittently seeing SAML assertion failures. We suspect an issue with clock skew between identity providers and our auth_service.",
+    "tags": ["auth", "sso", "eu", "authentication", "auth_service"]
+  },
+  {
+    "incident_id": "INC-1003",
+    "title": "Workspace permissions caching bug",
+    "status": "Resolved",
+    "summary": "A caching bug caused stale workspace role assignments to persist for up to 30 minutes after changes. Permissions now update correctly and the issue has been resolved.",
+    "tags": ["workspace", "permissions", "cache"]
+  },
+  {
+    "incident_id": "INC-1004",
+    "title": "API rate limiting spike for export endpoints",
+    "status": "Resolved",
+    "summary": "A misconfigured rate limiting rule caused some export API calls to be throttled aggressively. The rule has been rolled back and normal behavior restored.",
+    "tags": ["export", "api", "rate_limit", "export_service"]
+  }
+]

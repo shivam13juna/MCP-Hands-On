@@ -1,0 +1,26 @@
+[
+  {
+    "id": "TICKET-001",
+    "description": "Customer cannot export their main workspace dashboard to CSV. They see 'Export failed: timeout' after ~30 seconds.",
+    "screenshot_path": "data/tickets/screenshots/export_timeout.png",
+    "log_snippet": "2025-11-01T09:21:10Z ERR_EXPORT_TIMEOUT workspace_id=ws_1234 service=export_service"
+  },
+  {
+    "id": "TICKET-002",
+    "description": "Several SSO users in the EU are failing to log in via SAML. Error banner says 'SAML assertion invalid or expired'.",
+    "screenshot_path": "data/tickets/screenshots/sso_error.png",
+    "log_snippet": "2025-11-02T10:15:44Z ERR_AUTH_SSO_SAML_ASSERTION service=auth_service region=eu-west"
+  },
+  {
+    "id": "TICKET-003",
+    "description": "User reports they are an editor on a workspace but cannot edit a dashboard. They can open it but see no edit controls.",
+    "screenshot_path": "data/tickets/screenshots/permissions_issue.png",
+    "log_snippet": null
+  },
+  {
+    "id": "TICKET-004",
+    "description": "Customer's export API integration started failing with HTTP 429 responses for export endpoints.",
+    "screenshot_path": "data/tickets/screenshots/api_429.png",
+    "log_snippet": "2025-11-03T12:07:30Z WARN_RATE_LIMIT service=export_service endpoint=/v1/export api_key=***"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "service_name": "export_service",
+    "status": "Degraded",
+    "notes": "Exports may time out for very large workspaces while we roll out performance improvements."
+  },
+  {
+    "service_name": "auth_service",
+    "status": "Healthy",
+    "notes": "No known issues. Recent SSO problems appear tied to external identity providers."
+  },
+  {
+    "service_name": "workspace_service",
+    "status": "Healthy",
+    "notes": "No active incidents. A previous permissions caching bug has been resolved."
+  },
+  {
+    "service_name": "reporting_ui",
+    "status": "Healthy",
+    "notes": "Dashboard rendering is operating normally."
+  }
+]
