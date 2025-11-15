@@ -105,6 +105,60 @@ OPENAI_API_KEY=your-api-key-here
 LLM_MODEL_NAME=gpt-4o-mini  # Optional, defaults to gpt-4o-mini
 ```
 
+## Interactive Jupyter Notebooks
+
+**Perfect for workshops and interactive learning!**
+
+We provide **3 Jupyter notebooks** for hands-on exploration:
+
+### 1. Quick Start Demo (`demo_quickstart.ipynb`)
+**⏱️ 5 minutes** - Perfect for workshop introduction
+
+- Process 2 sample tickets end-to-end
+- See complete output (customer reply + internal note)
+- Compare different ticket types
+- **Best for:** First-time demos, testing setup
+
+### 2. MCP Tools Deep Dive (`demo_mcp_tools.ipynb`)
+**⏱️ 15 minutes** - Understanding the tool layer
+
+- Connect to MCP server
+- Test each tool individually (`support_docs.search`, `incidents.search`, `status.check`)
+- Explore search algorithms and scoring
+- Performance analysis
+- Real-world ticket triage scenario
+- **Best for:** Teaching MCP concepts, tool customization
+
+### 3. Complete Flow Exploration (`demo_complete_flow.ipynb`)
+**⏱️ 20-30 minutes** - Full system deep dive
+
+- Complete ticket processing flow
+- Test each agent individually (Triage, Research, Action, Supervisor)
+- Detailed trace exploration
+- Process all 4 sample tickets
+- Compare results and behaviors
+- **Best for:** Understanding multi-agent orchestration, debugging
+
+### Running Notebooks
+
+**Prerequisites:**
+```bash
+# Install Jupyter
+pip install jupyter
+
+# Start MCP server (in separate terminal)
+python -m support_mcp_server.server
+
+# Start Jupyter
+jupyter notebook
+```
+
+Then open any of the demo notebooks and run cells sequentially!
+
+**Workshop Tip:** Start with `demo_quickstart.ipynb` to wow the audience, then dive into `demo_mcp_tools.ipynb` or `demo_complete_flow.ipynb` based on interest.
+
+---
+
 ## Usage
 
 ### Quick Start: Run a Sample Ticket

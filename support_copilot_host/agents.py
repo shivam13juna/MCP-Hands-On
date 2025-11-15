@@ -30,39 +30,39 @@ class TriageAgent:
         """
         system_prompt = """You are a support ticket triage specialist.
 
-Your task is to:
-1. Summarize the issue described in the ticket
-2. Classify the issue type
-3. Decide which tools to use for research
+            Your task is to:
+            1. Summarize the issue described in the ticket
+            2. Classify the issue type
+            3. Decide which tools to use for research
 
-Available tools:
-- support_docs.search: Search internal runbooks and documentation
-- incidents.search: Search for similar incidents
-- status.check: Check service health status
+            Available tools:
+            - support_docs.search: Search internal runbooks and documentation
+            - incidents.search: Search for similar incidents
+            - status.check: Check service health status
 
-Issue types:
-- KNOWN_ISSUE: Matches a known problem with documented solution
-- POSSIBLE_BUG: Likely a software bug
-- CONFIG_ERROR: User configuration mistake
-- OUTAGE_SUSPECTED: Possible service outage
-- OTHER: Doesn't fit other categories
+            Issue types:
+            - KNOWN_ISSUE: Matches a known problem with documented solution
+            - POSSIBLE_BUG: Likely a software bug
+            - CONFIG_ERROR: User configuration mistake
+            - OUTAGE_SUSPECTED: Possible service outage
+            - OTHER: Doesn't fit other categories
 
-Output your analysis as JSON with this structure:
-{
-  "issue_summary": "brief summary",
-  "issue_type": "one of the types above",
-  "tools_to_call": ["tool names to use"],
-  "notes": "additional context"
-}"""
+            Output your analysis as JSON with this structure:
+            {
+            "issue_summary": "brief summary",
+            "issue_type": "one of the types above",
+            "tools_to_call": ["tool names to use"],
+            "notes": "additional context"
+            }"""
 
         # Build user message with ticket details
         user_content = f"""Please triage this support ticket:
 
-Description: {ticket.description}
+        Description: {ticket.description}
 
-{f'Log snippet: {ticket.log_snippet}' if ticket.log_snippet else 'No logs provided.'}
+        {f'Log snippet: {ticket.log_snippet}' if ticket.log_snippet else 'No logs provided.'}
 
-{f'Screenshot: Available at {ticket.screenshot_path}' if ticket.screenshot_path else 'No screenshot provided.'}"""
+        {f'Screenshot: Available at {ticket.screenshot_path}' if ticket.screenshot_path else 'No screenshot provided.'}"""
 
         messages = [{"role": "user", "content": user_content}]
 
@@ -261,45 +261,45 @@ class ActionAgent:
         """
         system_prompt = """You are a support engineer drafting responses to customer tickets.
 
-Your task is to create:
-1. A customer-facing reply: empathetic, clear, actionable but extremely sarcastic and patronizing.
-2. An internal note: technical details, context, next steps
+            Your task is to create:
+            1. A customer-facing reply: empathetic, clear, actionable but extremely sarcastic and patronizing.
+            2. An internal note: technical details, context, next steps
 
-Guidelines for customer reply:
-- Be empathetic and professional
-- Explain what's happening in simple terms
-- Provide actionable next steps
-- Do NOT expose internal incident IDs or technical implementation details
-- If there's an ongoing incident, acknowledge it without alarm
-- Mention relevant documentation if helpful
+            Guidelines for customer reply:
+            - Be empathetic and professional
+            - Explain what's happening in simple terms
+            - Provide actionable next steps
+            - Do NOT expose internal incident IDs or technical implementation details
+            - If there's an ongoing incident, acknowledge it without alarm
+            - Mention relevant documentation if helpful
 
-Guidelines for internal note:
-- Include technical details and error codes
-- Reference specific incidents by ID
-- Note which runbooks apply
-- Suggest escalation if needed
+            Guidelines for internal note:
+            - Include technical details and error codes
+            - Reference specific incidents by ID
+            - Note which runbooks apply
+            - Suggest escalation if needed
 
-Output as JSON:
-{
-  "customer_reply": "...",
-  "internal_note": "..."
-}"""
+            Output as JSON:
+            {
+            "customer_reply": "...",
+            "internal_note": "..."
+            }"""
 
         user_content = f"""Ticket: {ticket.description}
 
-Triage Analysis:
-- Type: {plan.issue_type}
-- Summary: {plan.issue_summary}
+            Triage Analysis:
+            - Type: {plan.issue_type}
+            - Summary: {plan.issue_summary}
 
-Research Results:
-{report.summary}
+            Research Results:
+            {report.summary}
 
-Full research data:
-- Docs: {json.dumps([{'title': d['title'], 'path': d['path']} for d in report.docs_results], indent=2)}
-- Incidents: {json.dumps([{'id': i['incident_id'], 'title': i['title'], 'status': i['status']} for i in report.incident_results], indent=2)}
-- Status: {json.dumps(report.status_results, indent=2)}
+            Full research data:
+            - Docs: {json.dumps([{'title': d['title'], 'path': d['path']} for d in report.docs_results], indent=2)}
+            - Incidents: {json.dumps([{'id': i['incident_id'], 'title': i['title'], 'status': i['status']} for i in report.incident_results], indent=2)}
+            - Status: {json.dumps(report.status_results, indent=2)}
 
-Please draft the customer reply and internal note."""
+            Please draft the customer reply and internal note."""
 
         messages = [{"role": "user", "content": user_content}]
 
@@ -354,43 +354,43 @@ class SupervisorAgent:
         """
         system_prompt = """You are a senior support lead reviewing ticket responses.
 
-Your task is to review the customer reply and internal note for:
+        Your task is to review the customer reply and internal note for:
 
-1. Hallucinations: Does the response claim features/behaviors not supported by the research data?
-2. Information leakage: Does the customer reply expose internal incident IDs, service names, or implementation details?
-3. Missing context: Are there relevant incidents or runbooks that weren't mentioned?
-4. Tone and clarity: Is the customer reply professional and clear?
+        1. Hallucinations: Does the response claim features/behaviors not supported by the research data?
+        2. Information leakage: Does the customer reply expose internal incident IDs, service names, or implementation details?
+        3. Missing context: Are there relevant incidents or runbooks that weren't mentioned?
+        4. Tone and clarity: Is the customer reply professional and clear?
 
-If issues are found:
-- Set approved = false
-- Edit the messages to fix the issues
-- Explain what was changed in review_notes
+        If issues are found:
+        - Set approved = false
+        - Edit the messages to fix the issues
+        - Explain what was changed in review_notes
 
-If everything looks good:
-- Set approved = true
-- Copy the messages as-is to final_customer_reply and final_internal_note
-- Note "No issues found" in review_notes
+        If everything looks good:
+        - Set approved = true
+        - Copy the messages as-is to final_customer_reply and final_internal_note
+        - Note "No issues found" in review_notes
 
-Output as JSON:
-{
-  "approved": true/false,
-  "final_customer_reply": "...",
-  "final_internal_note": "...",
-  "review_notes": "..."
-}"""
+        Output as JSON:
+        {
+        "approved": true/false,
+        "final_customer_reply": "...",
+        "final_internal_note": "...",
+        "review_notes": "..."
+        }"""
 
         user_content = f"""Original ticket: {ticket.description}
 
-Research summary:
-{report.summary}
+        Research summary:
+        {report.summary}
 
-Drafted customer reply:
-{action.customer_reply}
+        Drafted customer reply:
+        {action.customer_reply}
 
-Drafted internal note:
-{action.internal_note}
+        Drafted internal note:
+        {action.internal_note}
 
-Please review and approve or edit."""
+        Please review and approve or edit."""
 
         messages = [{"role": "user", "content": user_content}]
 

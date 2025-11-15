@@ -105,8 +105,8 @@ def call_llm_for_json(
     # Add instruction to output JSON
     enhanced_system_prompt = f"""{system_prompt}
 
-IMPORTANT: You must respond with valid JSON only. Do not include any text before or after the JSON object.
-Do not use markdown code blocks. Just return the raw JSON."""
+    IMPORTANT: You must respond with valid JSON only. Do not include any text before or after the JSON object.
+    Do not use markdown code blocks. Just return the raw JSON."""
 
     # Get text response
     text_response = chat_with_vision(

@@ -3,6 +3,9 @@ Configuration for the Support Copilot Host.
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv('/Users/shivam13juna/Documents/scaler/ExtraClasses/rev_iitr/hands_on/ref/openai_key.env')
 
 # Base project directory
 BASE_DIR = Path(__file__).resolve().parents[1]

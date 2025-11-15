@@ -46,6 +46,12 @@ class IncidentDatabase:
             if status_filter and incident.get("status") not in status_filter:
                 continue
 
+            #example
+            #status_filter = ["open", "in_progress"]
+            #Incident with status "closed" will be skipped.
+            #Incident with status "open" will be processed.
+
+
             # Create searchable text from title, summary, and tags
             searchable = " ".join([
                 incident.get("title", "").lower(),

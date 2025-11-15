@@ -16,4 +16,8 @@ python-dotenv>=1.0.0
 # Pretty printing and CLI formatting
 rich>=13.0.0
 
+# Jupyter notebooks (for interactive demos)
+jupyter>=1.0.0
+ipykernel>=6.0.0
+
 # Standard utilities
