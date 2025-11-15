@@ -20,7 +20,7 @@ async def run_ticket_flow(ticket: Ticket) -> Tuple[SupervisorOutput, Trace]:
         Tuple of (SupervisorOutput, Trace)
     """
     # Generate trace ID
-    trace_id = str(uuid.uuid4())
+    trace_id = str(uuid.uuid4()) # a unique identifier for this flow run 16 characters. 
 
     # Create trace
     trace = Trace(trace_id=trace_id, ticket_id=ticket.id)

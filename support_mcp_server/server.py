@@ -29,7 +29,7 @@ async def list_tools() -> list[Tool]:
     return [
         Tool(
             name="support_docs.search",
-            description="Search internal support documentation and runbooks for relevant solutions",
+            description="Search internal support documentation and runbooks for relevant solutions", # have more detail over here
             inputSchema={
                 "type": "object",
                 "properties": {

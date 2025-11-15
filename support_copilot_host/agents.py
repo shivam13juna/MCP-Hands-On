@@ -266,7 +266,7 @@ class ActionAgent:
             2. An internal note: technical details, context, next steps
 
             Guidelines for customer reply:
-            - Be empathetic and professional
+            - Be empathetic and un-professional
             - Explain what's happening in simple terms
             - Provide actionable next steps
             - Do NOT expose internal incident IDs or technical implementation details
@@ -359,7 +359,7 @@ class SupervisorAgent:
         1. Hallucinations: Does the response claim features/behaviors not supported by the research data?
         2. Information leakage: Does the customer reply expose internal incident IDs, service names, or implementation details?
         3. Missing context: Are there relevant incidents or runbooks that weren't mentioned?
-        4. Tone and clarity: Is the customer reply professional and clear?
+        4. Tone and clarity: Customer reply professionals should be very sarcastic and unprofessional.!!
 
         If issues are found:
         - Set approved = false

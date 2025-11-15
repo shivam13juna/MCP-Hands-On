@@ -49,7 +49,7 @@ class RunbookDatabase:
         """
         query_tokens = query.lower().split()
         results = []
-
+        # I can't restart computer
         for runbook in self.runbooks:
             # Count occurrences of query tokens in title and body
             searchable = f"{runbook['title']} {runbook['body']}".lower()
